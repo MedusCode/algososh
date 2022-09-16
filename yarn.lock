@@ -6029,10 +6029,10 @@
     "dns-packet" "^1.3.1"
     "thunky" "^1.0.2"
 
-"nanoid@^3.2.0", "nanoid@^3.3.1":
-  "integrity" "sha512-CuHBogktKwpm5g2sRgv83jEy2ijFzBwMoYA60orPDR7ynsLijJDqgsi4RDGj3OJpy3Ieb+LYwiRmIOGyytgITA=="
-  "resolved" "https://registry.npmjs.org/nanoid/-/nanoid-3.3.2.tgz"
-  "version" "3.3.2"
+"nanoid@^3.3.1", "nanoid@^3.3.4":
+  "integrity" "sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw=="
+  "resolved" "https://registry.npmjs.org/nanoid/-/nanoid-3.3.4.tgz"
+  "version" "3.3.4"
 
 "natural-compare@^1.4.0":
   "integrity" "sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc= sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw=="

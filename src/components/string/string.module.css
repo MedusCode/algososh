@@ -1,0 +1,13 @@
+.form {
+  max-width: 522px;
+  margin: 0 auto 120px;
+  display: flex;
+  gap: 12px;
+}
+
+.canvas {
+  width: fit-content;
+  display: flex;
+  gap: 16px;
+  margin: 0 auto;
+}
