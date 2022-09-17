@@ -52,7 +52,12 @@ export const StringComponent: React.FC = () => {
     <SolutionLayout title="Строка">
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input type={'text'} maxLength={11} isLimitText={true} onChange={changeInput} value={inputValue} />
-        <Button type={'submit'} text={'Развернуть'} disabled={inputValue.length < 1} isLoader={isReordering} />
+        <Button
+          type={'submit'}
+          text={'Развернуть'}
+          disabled={inputValue.length < 1}
+          isLoader={isReordering}
+          linkedList={'small'} />
       </form>
       {circles ?
         <div className={styles.canvas}>

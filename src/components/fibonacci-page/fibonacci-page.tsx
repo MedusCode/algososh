@@ -58,7 +58,13 @@ export const FibonacciPage: React.FC = () => {
     <SolutionLayout title="Последовательность Фибоначчи">
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input type={'number'} max={19} isLimitText={true} onChange={changeInput} value={inputValue} />
-        <Button type={'submit'} text={'Рассчитать'} disabled={inputValue < 1 || inputValue > 19} isLoader={inProcess} />
+        <Button
+          type={'submit'}
+          text={'Рассчитать'}
+          disabled={inputValue < 1 || inputValue > 19}
+          isLoader={inProcess}
+          linkedList={'small'}
+        />
       </form>
       {circles ?
         <div className={styles.canvas}>
@@ -68,7 +74,8 @@ export const FibonacciPage: React.FC = () => {
               key={nanoid()}
               index={index}
               extraClass={styles.circle}
-            />)}
+            />)
+          }
         </div>
         : <></>
       }

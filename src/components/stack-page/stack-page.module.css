@@ -1,9 +1,17 @@
 .form {
-  max-width: 567px;
-  margin: 0 auto 48px;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(130px, 378px) 121px 108px 1fr;
+  max-width: 830px;
   gap: 12px;
+  margin: 0 auto 78px;
+}
+
+.button {
+  min-width: unset;
+}
+
+.button:last-child {
+  justify-self: right;
 }
 
 .canvas {

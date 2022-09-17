@@ -1,7 +1,8 @@
 .form {
-  max-width: 522px;
+  max-width: 567px;
   margin: 0 auto 120px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
   gap: 12px;
 }
 
