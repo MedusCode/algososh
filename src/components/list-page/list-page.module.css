@@ -1,0 +1,33 @@
+.form {
+  display: grid;
+  grid-template-columns: 204px repeat(4, 1fr);
+  gap: 12px;
+  max-width: 952px;
+  margin: 0 auto 120px;
+}
+
+.button {
+  white-space: nowrap;
+}
+
+.buttonLarge {
+  grid-column: span 2;
+}
+
+.canvas {
+  display: flex;
+  gap: 16px;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.circleContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.solutionLayout {
+  min-height: 693px;
+  max-height: unset;
+}

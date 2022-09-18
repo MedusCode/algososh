@@ -62,7 +62,7 @@ export const QueuePage: React.FC = () => {
   return (
     <SolutionLayout title="Очередь">
       <form className={styles.form} onSubmit={handleSubmit}>
-        <Input type={'text'} maxLength={4} isLimitText={true} onChange={changeInput} value={inputValue} />
+        <Input type={'text'} maxLength={4} isLimitText={true} onChange={changeInput} value={inputValue} placeholder={'Введите значение'} />
         <Button
           type={'submit'}
           text={'Добавить'}
