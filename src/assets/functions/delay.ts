@@ -8,5 +8,4 @@ const setNormalDelay = () => setDelay(DELAY_IN_MS)
 
 const setShortDelay = () => setDelay(SHORT_DELAY_IN_MS)
 
-export default setDelay;
 export { setNormalDelay, setShortDelay };

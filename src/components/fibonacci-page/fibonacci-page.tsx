@@ -6,32 +6,26 @@ import { Button } from "../ui/button/button";
 import { setShortDelay } from "../../assets/functions/delay";
 import { Circle } from "../ui/circle/circle";
 import { nanoid } from "nanoid";
+import { TNotStated } from "../../types/not-stated";
+import { NOT_STATED } from "../../constants/not-stated";
+import { getFibonacciNumbers } from "./fibonacci.utils";
 
 export const FibonacciPage: React.FC = () => {
-  const [ inputValue, setInputValue ] = useState<number | ''>('');
+  const [ inputValue, setInputValue ] = useState<number | TNotStated>(NOT_STATED);
   const [ circles, setCircles ] = useState<Array<number>>([]);
-  const [ inProcess, setInProcess ] = useState<boolean>(false);
+  const [ inProcess, setInProcess ] = useState(false);
 
   const changeInput = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
     try {
       if (value === '') {
-        setInputValue('');
+        setInputValue(NOT_STATED);
       } else {
         setInputValue(Number(value));
       }
     } catch (err) {
       return;
     }
-  }
-
-  const getFibonacciNumbers = (n: number) => {
-    const numbers: Array<number> = [ 1, 1 ];
-
-    for (let i = 2; i <= n; i++) {
-      numbers.push(numbers[i - 1] + numbers[i - 2]);
-    }
-    return numbers;
   }
 
   const renderCircles = async (numbers: Array<number>) => {
@@ -57,7 +51,7 @@ export const FibonacciPage: React.FC = () => {
   return (
     <SolutionLayout title="Последовательность Фибоначчи">
       <form className={styles.form} onSubmit={handleSubmit}>
-        <Input type={'number'} max={19} isLimitText={true} onChange={changeInput} value={inputValue} />
+        <Input type={'number'} max={19} isLimitText onChange={changeInput} value={inputValue} disabled={inProcess} />
         <Button
           type={'submit'}
           text={'Рассчитать'}

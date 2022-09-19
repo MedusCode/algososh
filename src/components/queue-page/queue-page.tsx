@@ -11,22 +11,23 @@ import { setShortDelay } from "../../assets/functions/delay";
 import { QUEUE_SIZE } from "../../constants/queue-size";
 import { HEAD, TAIL } from "../../constants/element-captions";
 import { IInProcess } from "../../types/animation-process";
+import { NOT_STATED } from "../../constants/not-stated";
 
 export const QueuePage: React.FC = () => {
-  const [ queue ] = useState<IQueue<string>>(new Queue(QUEUE_SIZE))
-  const [ inputValue, setInputValue ] = useState<string>('');
-  const [ circles, setCircles ] = useState<TQueueContainer<string>>(queue.getElements)
+  const { current: queue } = useRef<IQueue<string>>(new Queue(QUEUE_SIZE))
+  const [ inputValue, setInputValue ] = useState<string>(NOT_STATED);
+  const [ circles, setCircles ] = useState<TQueueContainer<string>>(queue.elements)
   const [ inProcess, setInProcess ] = useState<IInProcess>({ add: false, remove: false });
-  const newQueue = useRef<boolean>(true);
+  const newQueue = useRef(true);
   const isAnyProcess = inProcess.add || inProcess.remove;
-  const queueLength = queue.getLength();
+  const queueLength = queue.currLength;
 
   const changeInput = (e: FormEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
   }
 
   const updateCircles = () => {
-    setCircles(queue.getElements());
+    setCircles(queue.elements);
   }
 
   const removeCircle = async () => {
@@ -46,9 +47,9 @@ export const QueuePage: React.FC = () => {
   const addCircle = async (item: string) => {
     queue.enqueue(item)
     updateCircles();
-    setInputValue('');
     newQueue.current = false;
     await setShortDelay();
+    setInputValue(NOT_STATED);
   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -62,7 +63,15 @@ export const QueuePage: React.FC = () => {
   return (
     <SolutionLayout title="Очередь">
       <form className={styles.form} onSubmit={handleSubmit}>
-        <Input type={'text'} maxLength={4} isLimitText={true} onChange={changeInput} value={inputValue} placeholder={'Введите значение'} />
+        <Input
+          type={'text'}
+          maxLength={4}
+          isLimitText
+          onChange={changeInput}
+          value={inputValue}
+          placeholder={'Введите значение'}
+          disabled={inProcess.add || inProcess.remove}
+        />
         <Button
           type={'submit'}
           text={'Добавить'}
@@ -90,9 +99,11 @@ export const QueuePage: React.FC = () => {
             letter={circle}
             key={nanoid()}
             index={index}
-            head={index === queue.getHead() && !newQueue.current ? HEAD : ''}
-            tail={index === queue.getTail() && queueLength > 0 ? TAIL : ''}
-            state={(index === queue.getHead() && inProcess.remove) || (index === queue.getTail() && inProcess.add) ? ElementStates.Changing : ElementStates.Default}
+            head={index === queue.headIndex && !newQueue.current ? HEAD : ''}
+            tail={index === queue.tailIndex && queueLength > 0 ? TAIL : ''}
+            state={(index === queue.headIndex && inProcess.remove) || (index === queue.tailIndex && inProcess.add)
+              ? ElementStates.Changing
+              : ElementStates.Default}
             extraClass={styles.circle}
           />)
         }

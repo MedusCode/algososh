@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import styles from "./stack-page.module.css";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Input } from "../ui/input/input";
@@ -9,10 +9,11 @@ import { nanoid } from "nanoid";
 import { ElementStates } from "../../types/element";
 import { setShortDelay } from "../../assets/functions/delay";
 import { IInProcess } from "../../types/animation-process";
+import { NOT_STATED } from "../../constants/not-stated";
 
 export const StackPage: React.FC = () => {
-  const [ stack ] = useState<IStack<string>>(new Stack())
-  const [ inputValue, setInputValue ] = useState<string>('');
+  const { current: stack } = useRef<IStack<string>>(new Stack())
+  const [ inputValue, setInputValue ] = useState<string>(NOT_STATED);
   const [ circles, setCircles ] = useState<TStackContainer<string>>([])
   const [ inProcess, setInProcess ] = useState<IInProcess>({ add: false, remove: false });
   const isAnyProcess = inProcess.add || inProcess.remove;
@@ -22,14 +23,14 @@ export const StackPage: React.FC = () => {
   }
 
   const updateCircles = () => {
-    setCircles(stack.getElements());
+    setCircles(stack.elements);
   }
 
   const addCircle = async (item: string) => {
     stack.push(item);
     updateCircles();
-    setInputValue('');
     await setShortDelay();
+    setInputValue(NOT_STATED);
   }
 
   const removeCircle = async () => {
@@ -56,7 +57,14 @@ export const StackPage: React.FC = () => {
   return (
     <SolutionLayout title="Стек">
       <form className={styles.form} onSubmit={handleSubmit}>
-        <Input type={'text'} maxLength={4} isLimitText={true} onChange={changeInput} value={inputValue} />
+        <Input
+          type={'text'}
+          maxLength={4}
+          isLimitText
+          onChange={changeInput}
+          value={inputValue}
+          disabled={inProcess.add || inProcess.remove}
+        />
         <Button
           type={'submit'}
           text={'Добавить'}

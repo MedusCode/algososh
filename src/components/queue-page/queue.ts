@@ -4,10 +4,10 @@ export interface IQueue<T> {
   enqueue: (item: T) => void;
   dequeue: () => void;
   clear: () => void;
-  getElements: () => TQueueContainer<T>;
-  getHead: () => number;
-  getTail: () => number;
-  getLength: () => number;
+  elements: TQueueContainer<T>;
+  headIndex: number;
+  tailIndex: number;
+  currLength: number;
 }
 
 export class Queue<T> implements IQueue<T> {
@@ -15,9 +15,8 @@ export class Queue<T> implements IQueue<T> {
   private head: number = 0;
   private tail: number = 0;
   private length: number = 0;
-  private readonly size: number = 0;
 
-  constructor(size: number) {
+  constructor(private readonly size: number = 0) {
     this.size = size;
     this.container = Array(size);
   }
@@ -61,11 +60,19 @@ export class Queue<T> implements IQueue<T> {
     this.length = 0;
   }
 
-  getElements = () => [...this.container];
+  get elements() {
+    return [...this.container];
+  }
 
-  getHead = () => this.head;
+  get headIndex() {
+    return this.head;
+  }
 
-  getTail = () => this.tail;
+  get tailIndex() {
+    return this.tail;
+  }
 
-  getLength = () => this.length;
+  get currLength() {
+    return this.length;
+  }
 }

@@ -4,7 +4,7 @@ export interface IStack<T> {
   push: (item: T) => void;
   pop: () => void;
   clear: () => void;
-  getElements: () => TStackContainer<T>
+  elements: TStackContainer<T>
 }
 
 export class Stack<T> implements IStack<T> {
@@ -22,5 +22,7 @@ export class Stack<T> implements IStack<T> {
     this.container = [];
   }
 
-  getElements = () => [...this.container];
+  get elements() {
+    return [...this.container];
+  }
 }

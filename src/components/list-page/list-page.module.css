@@ -26,8 +26,3 @@
   align-items: center;
   gap: 16px;
 }
-
-.solutionLayout {
-  min-height: 693px;
-  max-height: unset;
-}

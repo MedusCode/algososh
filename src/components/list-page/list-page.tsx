@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import styles from "./list-page.module.css";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Input } from "../ui/input/input";
@@ -11,10 +11,12 @@ import { ArrowIcon } from "../ui/icons/arrow-icon";
 import { randomStringArr } from "../../assets/functions/random-array";
 import { setShortDelay } from "../../assets/functions/delay";
 import { ElementStates } from "../../types/element";
+import { TNotStated } from "../../types/not-stated";
+import { NOT_STATED } from "../../constants/not-stated";
 
 interface IInputValues {
   value: string;
-  index: number | '';
+  index: number | TNotStated;
 }
 
 enum CirclePosition {
@@ -32,8 +34,8 @@ interface IProcess {
 const processInitialState: IProcess = { index: null, changeCircles: false, isDone: false, circlePosition: null };
 
 export const ListPage: React.FC = () => {
-  const [ linkedList ] = useState<ILinkedList<string>>(new LinkedList(randomStringArr({ min: 2, max: 5 }, { min: 0, max: 100 })));
-  const [ inputValues, setInputValues ] = useState<IInputValues>({ value: '', index: '' });
+  const { current: linkedList }= useRef<ILinkedList<string>>(new LinkedList(randomStringArr({ min: 2, max: 5 }, { min: 0, max: 100 })));
+  const [ inputValues, setInputValues ] = useState<IInputValues>({ value: NOT_STATED, index: NOT_STATED });
   const [ process, setProcess ] = useState<IProcess>(processInitialState);
   const [ circles, setCircles ] = useState<Array<string>>(linkedList.toArray());
   const [ loader, setLoader ] = useState<string>('')
@@ -50,8 +52,8 @@ export const ListPage: React.FC = () => {
   const changeIndexInput = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
     try {
-      if (value === '') {
-        setInputValues({ ...inputValues, index: '' });
+      if (value === NOT_STATED) {
+        setInputValues({ ...inputValues, index: NOT_STATED });
       } else {
         setInputValues({ ...inputValues, index: Number(value) });
       }
@@ -65,7 +67,7 @@ export const ListPage: React.FC = () => {
   }
 
   const clearValues = () => {
-    setInputValues({ value: '', index: '' });
+    setInputValues({ value: NOT_STATED, index: NOT_STATED });
   }
 
   const activateLoader = (e: FormEvent<HTMLButtonElement>) => {
@@ -116,7 +118,7 @@ export const ListPage: React.FC = () => {
 
   const addByIndex = async (e: FormEvent<HTMLButtonElement>) => {
     activateLoader(e);
-    if (inputValues.value !== '' && inputValues.index !== '') {
+    if (inputValues.value !== NOT_STATED && inputValues.index !== NOT_STATED) {
       let counter = 0;
       for (let i = 0; i <= inputValues.index; i++) {
         setProcess({ index: i, changeCircles: true, isDone: false, circlePosition: CirclePosition.TOP });
@@ -134,7 +136,7 @@ export const ListPage: React.FC = () => {
 
   const deleteByIndex = async (e: FormEvent<HTMLButtonElement>) => {
     activateLoader(e);
-    if (inputValues.index !== '') {
+    if (inputValues.index !== NOT_STATED) {
       let counter = 0;
       for (let i = 0; i <= inputValues.index; i++) {
         setProcess({ index: i, changeCircles: true, isDone: false, circlePosition: null });
@@ -162,7 +164,7 @@ export const ListPage: React.FC = () => {
         <Input
           type={'text'}
           maxLength={4}
-          isLimitText={true}
+          isLimitText
           name={'value'}
           onChange={changeValueInput}
           value={inputValues.value}

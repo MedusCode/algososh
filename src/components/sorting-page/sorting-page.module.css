@@ -24,7 +24,7 @@
 .canvas {
   width: fit-content;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   margin: 0 auto;
   gap: 10px;
   height: 340px;
