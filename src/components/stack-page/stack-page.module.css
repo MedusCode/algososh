@@ -1,0 +1,29 @@
+.form {
+  display: grid;
+  grid-template-columns: minmax(130px, 378px) 121px 108px 1fr;
+  max-width: 830px;
+  gap: 12px;
+  margin: 0 auto 78px;
+}
+
+.button {
+  min-width: unset;
+}
+
+.button:last-child {
+  justify-self: right;
+}
+
+.canvas {
+  width: fit-content;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(10, fit-content(0px));
+  row-gap: 78px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.circle {
+  margin: 0 8px;
+}

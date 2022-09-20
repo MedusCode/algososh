@@ -1,0 +1,14 @@
+.form {
+  max-width: 567px;
+  margin: 0 auto 120px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+.canvas {
+  width: fit-content;
+  display: flex;
+  gap: 16px;
+  margin: 0 auto;
+}

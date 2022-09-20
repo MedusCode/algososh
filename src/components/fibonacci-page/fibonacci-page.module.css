@@ -1,0 +1,21 @@
+.form {
+  max-width: 567px;
+  margin: 0 auto 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+.canvas {
+  width: fit-content;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(10, fit-content(0px));
+  row-gap: 78px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.circle {
+  margin: 0 8px;
+}

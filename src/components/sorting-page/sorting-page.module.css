@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  align-items: center;
+  max-width: 980px;
+  margin: 0 auto 48px;
+  gap: 12px;
+}
+
+.radio {
+  margin-right: 40px;
+}
+
+.button {
+  min-width: 205px;
+  white-space: nowrap;
+  padding: 18px 0;
+}
+
+.lastButton {
+  composes: button;
+  margin-left: 68px;
+}
+
+.canvas {
+  width: fit-content;
+  display: flex;
+  align-items: flex-end;
+  margin: 0 auto;
+  gap: 10px;
+  height: 340px;
+  list-style: none;
+}
