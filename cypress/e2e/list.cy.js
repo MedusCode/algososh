@@ -3,7 +3,7 @@ import { SHORT_DELAY_IN_MS } from "../../src/constants/delays";
 
 describe('List tests', () => {
   beforeEach('Open list page', () => {
-    cy.visit('http://localhost:3000/list');
+    cy.visit('/list');
   });
 
   it('Add buttons disabled with empty input', () => {

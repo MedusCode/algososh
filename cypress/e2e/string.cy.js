@@ -4,7 +4,7 @@ import { DELAY_IN_MS } from "../../src/constants/delays";
 
 describe('String tests', () => {
   it('Open string page', () => {
-    cy.visit('http://localhost:3000/recursion')
+    cy.visit('/recursion')
   });
 
   it('Start button disabled with empty input', () => {

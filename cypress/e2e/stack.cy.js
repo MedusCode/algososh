@@ -4,7 +4,7 @@ import { SHORT_DELAY_IN_MS } from "../../src/constants/delays";
 
 describe('Stack tests', () => {
   beforeEach('Open stack page', () => {
-    cy.visit('http://localhost:3000/stack');
+    cy.visit('/stack');
   });
 
   it('Remove and clear buttons disabled initially', () => {

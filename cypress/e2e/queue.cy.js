@@ -4,7 +4,7 @@ import { SHORT_DELAY_IN_MS } from "../../src/constants/delays";
 
 describe('Queue tests', () => {
   beforeEach('Open queue page', () => {
-    cy.visit('http://localhost:3000/queue');
+    cy.visit('/queue');
   });
 
   it('Remove and clear buttons disabled initially', () => {

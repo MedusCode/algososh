@@ -5,7 +5,7 @@ const fibonacci = [1,1,2,3,5,8,13];
 
 describe('Fibonacci tests', () => {
   it('Open fibonacci page', () => {
-    cy.visit('http://localhost:3000/fibonacci');
+    cy.visit('/fibonacci');
   });
 
   it('Start button disabled with empty input', () => {

@@ -1,6 +1,6 @@
 describe('Routing test', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000')
+    cy.visit('/')
   });
 
   it('Open string page', () => {
