@@ -170,6 +170,7 @@ export const ListPage: React.FC = () => {
           value={inputValues.value}
           placeholder={'Введите значение'}
           disabled={process.index !== null}
+          data-cy={'valueInput'}
         />
         <Button
           text={'Добавить в head'}
@@ -178,6 +179,7 @@ export const ListPage: React.FC = () => {
           extraClass={styles.button}
           name={'addToHead'}
           isLoader={loader === 'addToHead'}
+          data-cy={'addToHead'}
         />
         <Button
           text={'Добавить в tail'}
@@ -186,6 +188,7 @@ export const ListPage: React.FC = () => {
           extraClass={styles.button}
           name={'addToTail'}
           isLoader={loader === 'addToTail'}
+          data-cy={'addToTail'}
         />
         <Button
           text={'Удалить из head'}
@@ -194,6 +197,7 @@ export const ListPage: React.FC = () => {
           extraClass={styles.button}
           name={'removeFromHead'}
           isLoader={loader === 'removeFromHead'}
+          data-cy={'removeFromHead'}
         />
         <Button
           text={'Удалить из tail'}
@@ -202,6 +206,7 @@ export const ListPage: React.FC = () => {
           extraClass={styles.button}
           name={'removeFromTail'}
           isLoader={loader === 'removeFromTail'}
+          data-cy={'removeFromTail'}
         />
         <Input
           type={'number'}
@@ -211,6 +216,7 @@ export const ListPage: React.FC = () => {
           value={inputValues.index}
           placeholder={'Введите индекс'}
           disabled={process.index !== null}
+          data-cy={'indexInput'}
         />
         <Button
           text={'Добавить по индексу'}
@@ -219,6 +225,7 @@ export const ListPage: React.FC = () => {
           extraClass={styles.buttonLarge}
           name={'addByIndex'}
           isLoader={loader === 'addByIndex'}
+          data-cy={'addByIndex'}
         />
         <Button
           text={'Удалить по индексу'}
@@ -227,6 +234,7 @@ export const ListPage: React.FC = () => {
           extraClass={styles.buttonLarge}
           name={'removeByIndex'}
           isLoader={loader === 'removeByIndex'}
+          data-cy={'removeByIndex'}
         />
       </form>
 

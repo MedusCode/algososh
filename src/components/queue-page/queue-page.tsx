@@ -71,6 +71,7 @@ export const QueuePage: React.FC = () => {
           value={inputValue}
           placeholder={'Введите значение'}
           disabled={inProcess.add || inProcess.remove}
+          data-cy={'input'}
         />
         <Button
           type={'submit'}
@@ -78,6 +79,7 @@ export const QueuePage: React.FC = () => {
           disabled={inputValue.length < 1 || queueLength >= QUEUE_SIZE || isAnyProcess}
           isLoader={inProcess.add}
           extraClass={styles.button}
+          data-cy={'add'}
         />
         <Button
           text={'Удалить'}
@@ -85,12 +87,14 @@ export const QueuePage: React.FC = () => {
           disabled={queueLength < 1 || isAnyProcess}
           isLoader={inProcess.remove}
           extraClass={styles.button}
+          data-cy={'remove'}
         />
         <Button
           text={'Очистить'}
           onClick={clearCircles}
-          disabled={isAnyProcess}
+          disabled={queueLength < 1 || isAnyProcess}
           extraClass={styles.button}
+          data-cy={'clear'}
         />
       </form>
       <div className={styles.canvas}>
