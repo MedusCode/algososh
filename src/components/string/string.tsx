@@ -30,13 +30,15 @@ export const StringComponent: React.FC = () => {
   return (
     <SolutionLayout title="Строка">
       <form className={styles.form} onSubmit={handleSubmit}>
-        <Input type={'text'} maxLength={11} isLimitText onChange={changeInput} value={inputValue} disabled={isReordering} />
+        <Input data-cy={'input'} type={'text'} maxLength={11} isLimitText onChange={changeInput} value={inputValue} disabled={isReordering} />
         <Button
           type={'submit'}
           text={'Развернуть'}
           disabled={inputValue.length < 1}
           isLoader={isReordering}
-          linkedList={'small'} />
+          linkedList={'small'}
+          data-cy={'submit'}
+        />
       </form>
       {circles ?
         <div className={styles.canvas}>
